@@ -1,5 +1,6 @@
 ---
 import Navbar from "../components/common/Navbar.astro";
+import Footer from "../components/common/Footer.astro";
 ---
 
 <html lang="es">
@@ -13,7 +14,10 @@ import Navbar from "../components/common/Navbar.astro";
     <body>
         <div class="wrapper">
             <Navbar />
+            <hr>
             <slot />
+            <hr>
+            <Footer />
         </div>
     </body>
 </html>
@@ -91,6 +95,7 @@ import Navbar from "../components/common/Navbar.astro";
     /* A elements that don't have a class get default styles */
     a:not([class]) {
         text-decoration-skip-ink: auto;
+        color: var(--link-color);
     }
 
     /* Make images easier to work with */
