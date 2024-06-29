@@ -1,0 +1,26 @@
+---
+import PaletteIcon from "../../icons/Palette.astro";
+---
+
+<nav>
+    <a href="/">Guirdo's Tech Blog</a>
+
+    <span>
+        <PaletteIcon />
+    </span>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: space-between;
+        padding: var(--s-xxs);
+    }
+
+    nav a:first-child {
+        font-weight: bold;
+        text-decoration: none;
+        color: inherit;
+        font-size: var(--s-md);
+    }
+</style>
