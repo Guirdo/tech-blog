@@ -1,0 +1,36 @@
+---
+const { slug, title, date, description, image, imageAlt } = Astro.props;
+---
+
+<a href={slug}>
+    <article>
+        <div>
+            <h3>{title}</h3>
+            <p>{description}</p>
+            <date>{date}</date>
+        </div>
+        <picture>
+            <img src={image} alt={imageAlt} />
+        </picture>
+    </article>
+</a>
+
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    article:hover {
+        background-color: rgba(100, 100, 100, 0.2);
+    }
+    article {
+        display: flex;
+        flex-direction: row;
+        gap: var(--s-xs);
+        padding: var(--s-xxs);
+    }
+
+    article > div {
+        flex-grow: 1;
+    }
+</style>
