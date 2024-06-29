@@ -1,0 +1,196 @@
+---
+import Navbar from "../components/common/Navbar.astro";
+---
+
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <Navbar />
+            <slot />
+        </div>
+    </body>
+</html>
+
+<style is:global>
+    :root {
+        /* Font */
+        --font: "PT-Serif", "PT-Sans";
+        --scale: 1.15;
+        --stack: clamp(1.25ex, 2.5vmax, 1.75ex);
+
+        --fs-md: clamp(1rem, 1rem + 0.5vi, 1.35rem);
+        --fs-sm: calc(var(--fs-md) / var(--scale));
+        --fs-xs: calc(var(--fs-sm) / var(--scale));
+        --fs-xxs: calc(var(--fs-xs) / var(--scale));
+        --fs-lg: calc(var(--fs-md) * var(--scale));
+        --fs-xlg: calc(var(--fs-lg) * var(--scale));
+        --fs-xxlg: calc(var(--fs-xlg) * var(--scale));
+
+        --main-color: #0e1117;
+        --secondary-color: #e3e4db;
+        --accent-color: #ff7f11;
+        --info-color: #db3069;
+        --link-color: #0892a5;
+
+        --shadow: hsl(0 0% 0% / 0.35);
+
+        /* Spacing */
+        --s-xxs: 0.5rem;
+        --s-xs: 1rem;
+        --s-sm: 1.25rem;
+        --s-md: 1.5rem;
+        --s-lg: 1.75rem;
+        --s-xlg: 2rem;
+
+        --wrapper-max-width: 64rem;
+    }
+
+    /* Source: https://andy-bell.co.uk/a-modern-css-reset/ */
+
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        font-family: var(--font);
+        font-size: var(--fs-md);
+    }
+
+    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+    ul[role="list"],
+    ol[role="list"] {
+        list-style: none;
+    }
+
+    /* Set core root defaults */
+    html:focus-within {
+        scroll-behavior: smooth;
+    }
+
+    /* Set core body defaults */
+    body {
+        min-height: 100vh;
+        text-rendering: optimizeSpeed;
+        line-height: 1.5;
+        background-color: var(--main-color);
+    }
+
+    /* A elements that don't have a class get default styles */
+    a:not([class]) {
+        text-decoration-skip-ink: auto;
+    }
+
+    /* Make images easier to work with */
+    img,
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* Inherit fonts for inputs and buttons */
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 1.1;flickr.com/320/240
+    }
+
+    h1 {
+        font-size: var(--fs-xlg);
+    }
+
+    h2 {
+        font-size: var(--fs-lg);
+    }
+
+    h3 {
+        font-size: var(--fs-md);
+    }
+
+    section {
+        width: 100%;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input {
+        padding: calc(var(--s-xs) / 2);
+    }
+
+    textarea {
+        resize: none;
+        padding: calc(var(--s-xs) / 2);
+    }
+
+    code {
+        background-color: var(--secondary-light-1);
+        font-family: "Courier New", Courier, monospace;
+        padding: calc(var(--fs-sm) / 6);
+        border-radius: 0.25rem;
+    }
+
+    /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+    @media (prefers-reduced-motion: reduce) {
+        html:focus-within {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+
+    :where(h1, h2, h3) {
+        margin-block-start: calc(var(--stack) * 1.5);
+    }
+
+    :where(h1, h2, h3) + *:not(h1, h2, h3, div) {
+        margin-block-start: calc(var(--stack) / 1.5);
+    }
+
+    :where(p, iframe, aside) {
+        margin-block-start: calc(var(--stack) / 1.5);
+    }
+
+    :where(h1, h2, h3:is(:first-of-type)) {
+        margin-block-start: 0;
+    }
+
+    body {
+        display:grid;
+        grid-template-columns: 1fr minmax(min(48ch, 100%),60ch) 1fr;
+        background-color: var(--main-color);
+        color: var(--secondary-color);
+    }
+
+    .wrapper {
+        grid-column: 2 / 3;
+        width: 100%;
+    }
+</style>
