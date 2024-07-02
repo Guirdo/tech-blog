@@ -6,8 +6,9 @@ const { slug, title, date, description, image, imageAlt } = Astro.props;
     <article>
         <div>
             <h3>{title}</h3>
+            <hr>
             <p>{description}</p>
-            <date>{date}</date>
+            <small><date>{date}</date></small>
         </div>
         <picture>
             <img src={image} alt={imageAlt} />
@@ -28,9 +29,36 @@ const { slug, title, date, description, image, imageAlt } = Astro.props;
         flex-direction: row;
         gap: var(--s-xs);
         padding: var(--s-xxs);
+        border: 1px solid var(--secondary-color);
+    }
+
+    h3 {
+        color: var(--accent-color);
+    }
+
+    small {
+        font-weight: 700;
     }
 
     article > div {
         flex-grow: 1;
+    }
+
+    img {
+        max-width: 12rem;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+        align-self: center;
+    }
+
+    picture {
+        align-self: center;
+    }
+
+    @media screen and (max-width: 32rem) {
+        article {
+            flex-direction: column;
+            
+        }
     }
 </style>
