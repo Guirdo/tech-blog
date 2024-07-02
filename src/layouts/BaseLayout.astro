@@ -15,7 +15,9 @@ import Footer from "../components/common/Footer.astro";
         <div class="wrapper">
             <Navbar />
             <hr>
-            <slot />
+            <main>
+                <slot />
+            </main>
             <hr>
             <Footer />
         </div>
@@ -183,7 +185,7 @@ import Footer from "../components/common/Footer.astro";
         margin-block-start: calc(var(--stack) / 1.5);
     }
 
-    :where(h1, h2, h3:is(:first-of-type)) {
+    :where(h1, h3:is(:first-of-type)) {
         margin-block-start: 0;
     }
 
@@ -192,6 +194,10 @@ import Footer from "../components/common/Footer.astro";
         grid-template-columns: 1fr minmax(min(48ch, 100%),60ch) 1fr;
         background-color: var(--main-color);
         color: var(--secondary-color);
+    }
+
+    main {
+        height: 100%;
     }
 
     .wrapper {
