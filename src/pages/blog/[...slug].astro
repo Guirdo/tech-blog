@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection("blog");
+    return blogEntries.map((entry, index) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout>
+    <article>
+        <h1>{entry.data.title}</h1>
+        <Content />
+    </article>
+    <hr />
+    <div>
+        <p>
+            Gracias por haber leído hasta el final. Si tienes alguna duda o
+            sugerencia, contáctame por medio de mis redes sociales que podrás
+            encontrar más abajo.
+        </p>
+
+        <p>
+            ¿Encontraste un error o quieres modificar algo? <a
+                href={`https://github.com/Guirdo/website/blob/main/src/content/blog/${entry.slug}.md`}
+                >No dudes en hacer un Pull Request</a
+            >.
+        </p>
+    </div>
+</BaseLayout>
+
+<style>
+    article,
+    div {
+        padding: var(--s-xs);
+    }
+    h1 {
+        color: var(--accent-color);
+    }
+
+    article * a {
+        text-decoration: wavy;
+    }
+</style>
