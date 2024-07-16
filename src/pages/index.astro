@@ -1,16 +1,44 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/Article/ArticleCard.astro";
 
+import { getCollection } from "astro:content";
+const blogEntries = await getCollection("blog");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section class="lastest-articles">
+		<h2>Artículos recientes</h2>
+
+		<ul>
+			{
+				blogEntries.map((blogPostEntry) => (
+					<li>
+						<ArticleCard
+							slug={`/blog/${blogPostEntry.slug}`}
+							title={blogPostEntry.data.title}
+							date={blogPostEntry.data.date}
+							description={blogPostEntry.data.description}
+							image={blogPostEntry.data.image}
+							imageAlt={blogPostEntry.data.imageAlt}
+						/>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	.lastest-articles {
+		padding: var(--s-sm);
+	}
+
+	.lastest-articles ul {
+		list-style: none;
+		display: flex;
+		display: flex;
+		flex-direction: column;
+		gap: var(--s-xxs);
+	}
+</style>
