@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getEntry } from "astro:content";
 
 export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
@@ -11,12 +12,21 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const author = await getEntry(entry.data.author);
 const { Content } = await entry.render();
+
+const formatedDate = new Date(entry.data.date).toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+})
 ---
 
 <BaseLayout>
     <article>
         <h1>{entry.data.title}</h1>
+        <p><i>{author.data.nickname}</i></p>
+        <date>{formatedDate}</date>
         <Content />
     </article>
     <hr />

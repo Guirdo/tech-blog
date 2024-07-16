@@ -1,5 +1,11 @@
 ---
 const { slug, title, date, description, image, imageAlt } = Astro.props;
+
+const formatedDate = new Date(date).toLocaleDateString("es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+})
 ---
 
 <a href={slug}>
@@ -8,7 +14,7 @@ const { slug, title, date, description, image, imageAlt } = Astro.props;
             <h3>{title}</h3>
             <hr>
             <p>{description}</p>
-            <small><date>{date}</date></small>
+            <small><date>{formatedDate}</date></small>
         </div>
         <picture>
             <img src={image} alt={imageAlt} />
